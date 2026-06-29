@@ -56,6 +56,11 @@ async function fetchData() {
   const response = await fetch(url);
   const data = await response.json();
 
+  if(data.Response === "False"){
+    alert('Movie not found!')
+    return;
+  }
+
   localStorage.setItem("movie", movie);
   localStorage.setItem("data", JSON.stringify(data));
 
