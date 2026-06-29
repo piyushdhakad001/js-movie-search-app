@@ -9,9 +9,11 @@ body{
 }
 .container{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
   border: 2px solid;
-  width: 60%;
+  width: 80%;
   min-height: 60vh;
   margin-top: 30px;
   padding: 10px;
@@ -28,4 +30,11 @@ body{
   font-size: inherit;
   cursor: pointer;
   border-radius: 5px;
+}
+.movie-container{
+  font-size: x-large;
+  margin-top: 20px;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
