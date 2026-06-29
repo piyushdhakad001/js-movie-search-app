@@ -39,6 +39,11 @@ function render(data) {
   movieContainer.appendChild(movieDiv);
 };
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    fetchData();
+  }
+});
 searchButton.addEventListener("click", async () => {
   fetchData();
 });
