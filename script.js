@@ -54,6 +54,7 @@ function render(data) {
 document.addEventListener("keydown", (e) => {
  
   if (e.key === "Enter") {
+     loadingAPI();
     fetchData();
   }
 });
@@ -62,8 +63,14 @@ searchButton.addEventListener("click", async () => {
   fetchData();
 });
 async function fetchData() {
+   if(input.value === ''){
+    loadingPara.textContent = '';
+    alert("Enter movie name")
+    return
+  }
   const movie = input.value.trim();
   if (!movie) return;
+  
 
   const url = `http://www.omdbapi.com/?t=${movie}&apikey=44fd002 `;
 
@@ -71,6 +78,7 @@ async function fetchData() {
   const data = await response.json();
 
   if(data.Response === "False"){
+    loadingPara.textContent = '';
     alert('Movie not found!')
     return;
   }
