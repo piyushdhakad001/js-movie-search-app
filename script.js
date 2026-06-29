@@ -2,6 +2,9 @@ const searchButton = document.querySelector(".search");
 const input = document.querySelector(".input");
 const container = document.querySelector(".container");
 const movieContainer = document.querySelector(".movie-container");
+const loading = document.querySelector(".loading");
+const loadingPara = document.createElement("p");
+
 
 const movieDiv = document.createElement("div");
 const movieName = document.createElement("p");
@@ -16,9 +19,18 @@ const moviePlot = document.createElement("p");
 let lastMovieDetails = localStorage.getItem("data");
 let lastMovieName = localStorage.getItem("movie");
 
+function loadingAPI(){
+  
+loadingPara.textContent = 'Movie fetching.....';
+loading.appendChild(loadingPara);
+movieContainer.prepend(loading);
+
+}
 last();
 
 function render(data) {
+  movieDiv.innerHTML = "";
+  loading.textContent = '';
   movieName.textContent = `${data.Title}, (${data.Year}) on IMDB`;
   movieRatings.textContent = `☆ ${data.Ratings[0].Value}`;
   movieDuration.textContent = `Duration..... ${data.Runtime}`;
@@ -40,11 +52,13 @@ function render(data) {
 };
 
 document.addEventListener("keydown", (e) => {
+ 
   if (e.key === "Enter") {
     fetchData();
   }
 });
 searchButton.addEventListener("click", async () => {
+   loadingAPI();
   fetchData();
 });
 async function fetchData() {
@@ -76,3 +90,4 @@ async function last() {
     return;
   }
 };
+
